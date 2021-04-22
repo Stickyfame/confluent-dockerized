@@ -1,0 +1,13 @@
+version: "2.0"
+services:
+    confluent-test:
+        env_file: .env
+        build: ..
+        image: local/confluent
+        command: ["/run-confluent.sh", "${CONFLUENT_USER}", "${CONFLUENT_PASSWORD}"]
+        ports:
+            - "${CONFLUENT_HOST_PORT}:4005"
+    ipmisim:
+        image: "vaporio/ipmi-simulator"
+        ports:
+            - "623:623/udp"

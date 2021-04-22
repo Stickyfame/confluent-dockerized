@@ -1,0 +1,9 @@
+version: "2.0"
+services:
+    confluent:
+        env_file: .env
+        build: .
+        image: local/confluent
+        command: ["/run-confluent.sh", "${CONFLUENT_USER}", "${CONFLUENT_PASSWORD}"]
+        ports:
+            - "${CONFLUENT_HOST_PORT}:4005"
